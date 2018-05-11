@@ -16,7 +16,7 @@ public class Diamond {
             for (b = 0; b < a - diamondnum; b++) {
                 System.out.print(" ");
             }
-            for (b = diamondnum - a + 1; b < diamondnum *2; b++) {
+            for (b = a - diamondnum + 1; b < diamondnum + b; b++) {
                 System.out.print("*");
             }
             System.out.println("");
