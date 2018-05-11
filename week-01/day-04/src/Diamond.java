@@ -12,11 +12,11 @@ public class Diamond {
             }
             System.out.println("*");
         }
-        for (a = diamondnum; a < diamondnum * 2; a++) {
+        for (a = diamondnum; a < diamondnum * 2 + 1; a++) {
             for (b = 0; b < a - diamondnum; b++) {
                 System.out.print(" ");
             }
-            for (b = a - diamondnum + 1; b < diamondnum + b; b++) {
+            for (b = a - diamondnum + 1; b < diamondnum * 3 + 1 -a ; b++) {
                 System.out.print("*");
             }
             System.out.println("");
