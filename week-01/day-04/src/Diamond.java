@@ -1,6 +1,6 @@
 public class Diamond {
     public static void main(String[] args) {
-        int diamondnum = 5;
+        int diamondnum = 20;
         int b = diamondnum;
         int a = diamondnum;
         for (a = 0; a < diamondnum; a++) {
