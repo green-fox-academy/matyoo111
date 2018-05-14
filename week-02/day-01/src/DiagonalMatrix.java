@@ -2,7 +2,7 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 public class DiagonalMatrix {
   public static void main(String[] args) {
-    int matrixNum = 5;
+    int matrixNum = 10;
     int[][] array = new int[matrixNum][matrixNum];
     for (int i = 0; i < matrixNum; i++) {
       for (int j = 0; j < matrixNum; j++) {
