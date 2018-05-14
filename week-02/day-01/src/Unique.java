@@ -10,13 +10,10 @@ public class Unique {
   public static int[] unique(int[] uniquelist) {
     Arrays.sort(uniquelist);
     int [] sortedArray = new int[uniquelist.length];
+    int j = 0;
     for (int i = 0; i < uniquelist.length - 1; i++) {
-      int j = i;
-      if (uniquelist[i] == uniquelist[i + 1]) {
-        //sortedArray[j] = uniquelist[i];
-      }
-      else {
-        sortedArray[j] = uniquelist[i];
+      if (uniquelist[i] != uniquelist[i + 1]) {
+        sortedArray[j++] = uniquelist[i];
       }
     }
     return sortedArray;
