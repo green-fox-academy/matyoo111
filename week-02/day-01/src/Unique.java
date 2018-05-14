@@ -16,6 +16,10 @@ public class Unique {
         sortedArray[j++] = uniquelist[i];
       }
     }
-    return sortedArray;
+    int[] finalList = new int[j];
+    for (int i = 0; i < j; i++) {
+      finalList[i] = sortedArray[i];
+    }
+    return finalList;
   }
 }
