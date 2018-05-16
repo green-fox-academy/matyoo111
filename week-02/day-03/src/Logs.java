@@ -10,6 +10,7 @@ import java.util.List;
 public class Logs {
   public static void main(String[] args) {
     System.out.println(logIP("log.txt"));
+    System.out.println(getpostratio("log.txt"));
 
   }
   public static List<String> logIP(String filename) {
@@ -37,14 +38,23 @@ public class Logs {
       return notfound;
     }
   }
-  public static int getpostratio(String filename) {
+  public static float getpostratio(String filename) {
     try {
       Path logpath = Paths.get(filename);
       List<String> lineslogtxt = Files.readAllLines(logpath);
       ArrayList<String> getpost = new ArrayList<>();
-      int post = 0;
+      for (int i = 0; i < lineslogtxt.size(); i++) {
+        getpost.add(i, lineslogtxt.get(i).split(" ")[11]);
+      }
       int get = 0;
-      return 0;
+      for (int i = 0; i < getpost.size(); i++) {
+        if (getpost.get(i).equals("GET")) {
+          get = get + 1;
+        }
+      }
+      float post = (float)getpost.size() - (float)get;
+      float ratio = get / post;
+      return ratio;
     }
     catch (Exception e) {
       System.out.println("Could not read file");
