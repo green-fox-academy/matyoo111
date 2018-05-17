@@ -15,8 +15,8 @@ public class PositionSquare {
     int x = 0;
     int y = 0;
     for (int i = 0; i < 3; i++) {
-      x = x + 51;
-      y = y + 51;
+      x = x + 50;
+      y = y + 50;
       squareDrawing(x, y, graphics);
     }
   }
