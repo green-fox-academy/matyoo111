@@ -6,15 +6,16 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class CheckerBoard {
   public static void mainDraw(Graphics graphics) {
+    int numberOfSquares = 20;
     int size = 30;
-    for (int i = 0; i < HEIGHT / size; i++) {
+    for (int i = 0; i < numberOfSquares; i++) {
       if (i % 2 == 0) {
-        for (int j = 0; j < WIDTH / size; j++) {
+        for (int j = 0; j < numberOfSquares / 2; j++) {
           graphics.fillRect(i * size, j * size *2 , size, size);
         }
       }
       else {
-        for (int j = 0; j < WIDTH / size; j++) {
+        for (int j = 0; j < numberOfSquares / 2; j++) {
           graphics.fillRect(i * size, size + j * size * 2, size, size);
         }
       }
