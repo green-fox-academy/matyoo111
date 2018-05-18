@@ -5,7 +5,6 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class DrawTriangle {
   public static void mainDraw(Graphics graphics){
-    //drawTriangle(20, 20, graphics);
     int xStart = WIDTH / 2;
     int yStart = 40;
     for (int i = 0; i < 15; i++) {
@@ -16,7 +15,7 @@ public class DrawTriangle {
       xStart = WIDTH / 2 - i * 10;
       yStart = yStart + 20;
     }
-    }
+  }
 
 
   public static void drawTriangle(int xinit, int yinit, Graphics graphics) {
