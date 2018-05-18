@@ -44,14 +44,14 @@ public class StudentCounter{
 
     double ageofrest = 0;
 
-    for (int i = 0; i < map.size(); i++) {
-      if ((int)(map.get(i)).get("candies") > 4) {
-        System.out.println(map.get(i).get("name") + " has more than 4 candies");
-      }
-      else {
-        ageofrest = ageofrest + doubleValue(map.get(i)).get("age"));
-      }
-    }
+    //for (int i = 0; i < map.size(); i++) {
+      //if ((int)(map.get(i)).get("candies") > 4) {
+        //System.out.println(map.get(i).get("name") + " has more than 4 candies");
+      //}
+      //else {
+        //ageofrest = ageofrest + doubleValue(map.get(i)).get("age"));
+      //}
+    //}
     System.out.println(ageofrest);
     // Display the following things:
     //  - Who has got more candies than 4 candies
