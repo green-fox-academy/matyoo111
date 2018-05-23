@@ -15,15 +15,15 @@ public class LinePlayQuarters {
     for (int i = 0; i < divide; i++) {
       for (int j = 0; j < divide; j++) {
         drawLinePlay(divide, xInit, yInit, xEnd, yEnd, graphics);
-        yInit = 0;
+        yInit = yInit + (HEIGHT / divide) * i;
         xInit = xInit + (WIDTH / divide) * j;
         yEnd = yEnd + (HEIGHT / divide) * j;
-        xEnd = 0;
-        }
+        xEnd = xEnd = (WIDTH / divide) * i;
         yEnd = yInit + (WIDTH / divide) * i;
         xInit = xInit + (WIDTH / divide) * i;
         yInit = yInit + HEIGHT / divide * i;
         xEnd = xEnd + (WIDTH / divide) * i;
+        }
     }
   }
   public static void drawLinePlay(int divide, int xInit, int yInit, int xEnd, int yEnd,Graphics graphics) {
