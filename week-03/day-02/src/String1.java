@@ -3,7 +3,9 @@ public class String1 {
     String changedWord = "renoxoxos";
     int wordLenghLastindex = changedWord.length() - 1;
     changedWord = replaceXToY(changedWord, wordLenghLastindex);
+    System.out.println(wordLenghLastindex);
     System.out.println(changedWord);
+    System.out.println(changedWord.substring(6, 7));
   }
 
   private static String replaceXToY(String toBeReplaced, int wordLastIndex) {
