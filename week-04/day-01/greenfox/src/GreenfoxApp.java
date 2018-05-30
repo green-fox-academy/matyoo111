@@ -4,13 +4,26 @@ public class GreenfoxApp {
   public static void main(String[] args) {
     ArrayList<Person> people = new ArrayList<>();
 
-    Person mark = new Person("Mark", 46, "male");
-    people.add(mark);
-    Person jane = new Person();
-    people.add(jane);
+    //Person mark = new Person("Mark", 46, "male");
+    //people.add(mark);
+    //Person jane = new Person();
+    //people.add(jane);
     Student john = new Student("John Doe", 20, "male", "BME");
     people.add(john);
-    Student student = new Student();
+    Student john2 = john.clone();
+
+    System.out.println(john2.age);
+    System.out.println(john2.name);
+    System.out.println(john2.previousOrganization);
+
+    System.out.println(john.clone().equals(john));
+
+    System.out.println(john2.equals(john));
+    //john.stringstudent = john;
+
+
+
+    /*Student student = new Student();
     people.add(student);
     student.introduce();
     jane.introduce();
@@ -46,6 +59,6 @@ public class GreenfoxApp {
     awesome.addStudent(john);
     awesome.addMentor(mentor);
     awesome.addMentor(gandhi);
-    awesome.info();
+    awesome.info();*/
   }
 }

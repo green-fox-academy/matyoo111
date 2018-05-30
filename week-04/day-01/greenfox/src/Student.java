@@ -1,9 +1,9 @@
-public class Student extends Person {
+public class Student extends Person implements Cloneable {
 
   String previousOrganization;
   int skippedDays;
 
-  public Student() {
+  public Student(String name, int age, String gender) {
     super("Jane Doe", 30, "female");
     previousOrganization = "The School of life";
     skippedDays = 0;
@@ -14,6 +14,11 @@ public class Student extends Person {
     this.previousOrganization = previousOrganization;
     skippedDays = 0;
   }
+
+  public Student clone() {
+    return new Student(name, age, gender, previousOrganization);
+  }
+
 
   @Override
   public void getGoal() {
