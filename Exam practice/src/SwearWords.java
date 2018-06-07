@@ -25,7 +25,6 @@ public class SwearWords {
     for (int i = 0; i < content.size(); i++) {
       for (int j = 0; j < swearWords.size(); j++) {
         if (content.get(i).equalsIgnoreCase(swearWords.get(j))) {
-          //if (content.get(i).equalsIgnoreCase(swearWords.get(j)) || content.get(i).equalsIgnoreCase(swearWords.get(j) + ".") || content.get(i).equalsIgnoreCase(swearWords.get(j) + ",")) {
           counter++;
           content.remove(i);
         }

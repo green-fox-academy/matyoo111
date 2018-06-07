@@ -1,5 +1,3 @@
-import java.util.Comparator;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -56,7 +54,7 @@ public class Hashmap {
     Map<String, Integer> map = new HashMap<>();
     List<String> data = new ArrayList<>();
     for (int i = 0; i < fileContent.size(); i++) {
-      String[] year = fileContent.get(i).split("[;-]");
+      String[] year = fileContent.get(i).split("[-;]");
       for (String birthyear : year) {
         data.add(year[1]);
       }
