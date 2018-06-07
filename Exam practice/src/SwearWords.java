@@ -9,9 +9,6 @@ import java.util.List;
 public class SwearWords {
 
   public static void main(String[] args) {
-    // There is a not so family friendly text in the `content.txt`
-    // Create a function named familyFriendlizer that takes a filename and a list of strings as parameters
-    // and remove all the given words from the file and returns the amount of the removed words.
     ArrayList<String> offensiveWords = new ArrayList<> (Arrays.asList("fuck", "bloody", "cock", "shit", "fucker", "fuckstick", "asshole", "dick", "piss"));
     String fileURL = "content.txt";
     String newFileURL = "newcontent.txt";
@@ -27,7 +24,8 @@ public class SwearWords {
     int counter = 0;
     for (int i = 0; i < content.size(); i++) {
       for (int j = 0; j < swearWords.size(); j++) {
-        if (content.get(i).equalsIgnoreCase(swearWords.get(j)) || content.get(i).equalsIgnoreCase(swearWords.get(j) + ".") || content.get(i).equalsIgnoreCase(swearWords.get(j) + ",")) {
+        if (content.get(i).equalsIgnoreCase(swearWords.get(j))) {
+          //if (content.get(i).equalsIgnoreCase(swearWords.get(j)) || content.get(i).equalsIgnoreCase(swearWords.get(j) + ".") || content.get(i).equalsIgnoreCase(swearWords.get(j) + ",")) {
           counter++;
           content.remove(i);
         }
@@ -39,7 +37,7 @@ public class SwearWords {
   public static List<String> stringSplitter(List<String> fileContent) {
     List<String> separatedFileContent = new ArrayList<>();
     for (int i = 0; i < fileContent.size(); i++) {
-      for (String string : fileContent.get(i).split(" ")) {
+      for (String string : fileContent.get(i).split("[ .,]")) {
         separatedFileContent.add(string);
       }
     }

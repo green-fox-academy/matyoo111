@@ -14,7 +14,6 @@ public class Hashmap {
     List<String> fileContentRaw = readFile(fileURL);
     List<String> fileContentYearsExtracted = yearChecker(fileContentRaw);
     Map<String, Integer> yearFrequencies = getYearFrequenies(fileContentYearsExtracted);
-    //System.out.println(yearFrequencies);
 
 
     String mostFrequentYear = greatestYearFrequency(yearFrequencies);
