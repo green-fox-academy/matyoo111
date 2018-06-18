@@ -7,12 +7,21 @@ public class Exercise5 {
   public static void main(String[] args) {
 
     String exampleString = "Find the UpperCase Characters IN A STRING";
-    
+
     exampleString.chars()
             .mapToObj(n -> (char) n)
-            .filter(n -> n.toString().equals(n.toString().toUpperCase()))
-            .forEach(System.out::println);
+            .filter(n -> n.toString().equals(n.toString().toUpperCase()) && !(n.equals(' ')))
+            .forEach(System.out::print);
 
+    String[] splittedString = exampleString.split("");
+
+    String result = Arrays.stream(splittedString)
+            .map(c -> c.charAt(0))
+            .filter(c -> c.isUpperCase(c))
+            .map(c -> Character.toString(c))
+            .reduce((uppercase, letter) -> uppercase + letter)
+            .get();
+    //System.out.println(result);
 
   }
 }
