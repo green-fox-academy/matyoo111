@@ -13,6 +13,8 @@ public class Hashmap {
     List<String> fileContentYearsExtracted = yearChecker(fileContentRaw);
     Map<String, Integer> yearFrequencies = getYearFrequenies(fileContentYearsExtracted);
 
+    System.out.println(yearFrequencies);
+
 
     String mostFrequentYear = greatestYearFrequency(yearFrequencies);
     System.out.println(mostFrequentYear);
