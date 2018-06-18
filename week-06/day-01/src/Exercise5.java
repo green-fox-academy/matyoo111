@@ -15,13 +15,15 @@ public class Exercise5 {
 
     String[] splittedString = exampleString.split("");
 
+    System.out.println(" or ");
+
     String result = Arrays.stream(splittedString)
             .map(c -> c.charAt(0))
             .filter(c -> c.isUpperCase(c))
             .map(c -> Character.toString(c))
             .reduce((uppercase, letter) -> uppercase + letter)
             .get();
-    //System.out.println(result);
+    System.out.println(result);
 
   }
 }
