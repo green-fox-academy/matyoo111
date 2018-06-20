@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+
+<HTML>
+    <Head>
+        <title>LogIn Form</title>
+        <link rel="stylesheet" href="styles.css"/>
+        <meta charset="utf-8"/>
+    </Head>
+
+    <body>
+        
+        <form action="google.com" method="post">
+            <h1>Account Login</h1>
+            <div id="username">
+                    <label for="email">Username:</label>
+                    <input type="email" name="userName" placeholder="username" required maxlenght="20" autocomplete="off" autofocus><br><br>
+            </div>
+            <div id="password">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" placeholder="password" required maxlenght="10"><br>
+                    <i id="pass-status" class="fa fa-eye" aria-hidden="true" onClick="viewPassword()"></i>
+                    <p id="forgot">Forgot your password?</p>
+                    <button>LogIn</button>
+            </div>
+            
+        
+            
+
+
+        </form>
+    </body>
+</HTML>
