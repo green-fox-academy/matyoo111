@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+    padding: 0;
+    border-color: gray;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    text-align: left;
+    font-size: 30px;
+    border: 30px solid blue;
+}
+
+thead {
+    background-color: black;
+    border: 0px;
+    border-color: gray;
+}
+
+tbody {
+    border: 0px;
+    border-color: white;
+}
+
+tr {
+    font-size: 20px;
+}
+
+th {
+    color: white;
+    width: 300px;
+    height: 50px;
+    padding-left: 10px;
+}
+
+td {
+    height: 40px;
+    padding-left: 10px;
+}
+
+.oddrow {
+    background-color: #DED6D6;
+}
