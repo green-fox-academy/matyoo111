@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+
+<HTML>
+    <Head>
+        <title>Sign up form</title>
+        <link rel="stylesheet" href="styles.css"/>
+        <meta charset="utf-8"/>
+    </Head>
+
+    <body>
+        
+        <form action="/https://newsletter-ws.herokuapp.com/register" method="post">
+            <h1>Sign up</h1>
+            <input type="text" name="userName" placeholder="Username" required maxlenght="20" autocomplete="off" autofocus><br>
+            <input type="email" name="email" placeholder="Email" required maxlenght="20" autocomplete="off"><br>
+            <input id="password" name="password" type="password" pattern="^\S{6,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 6 characters' : ''); if(this.checkValidity()) form.password_two.pattern = this.value;" placeholder="Password" required>
+            <input id="password_two" name="password_two" type="password" pattern="^\S{6,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');" placeholder="Verify Password" required>
+            <button>SIGN ME UP</button>
+        </form>
+    </body>
+</HTML>
