@@ -5,10 +5,24 @@
     <title>Bank accounts</title>
 </head>
 <body>
-    <div th:object="${bankaccount}">
-        <p th:text="'Name: ' + *{name}"></p>
-        <p th:text="'Balance: ' + *{balance}"></p>
-        <p th:text="'Type: ' + *{animalType}"></p>
-    </div>
+    <table border="1">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Balance</th>
+            <th>Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        <div>
+            <tr th:each="bankaccount : ${bankaccounts}" th:object="${bankaccount}">
+                <td th:text="*{name}"></td>
+                <td th:text="*{balance}"></td>
+                <td th:text="*{animalType}"></td>
+            </tr>
+        </div>
+    </tbody>
+    </table>
+
 </body>
 </html>
