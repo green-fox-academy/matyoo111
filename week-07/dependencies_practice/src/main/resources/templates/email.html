@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <form action="#" th:action="@{/useful/email}" method="get">
+            <label for="word">Email to check</label>
+            <input type="text" id="word" name="word" />
+            <input type="submit" value="convert">
+        </form>
+
+    </div>
+    <p th:style="'color:' + ${color}" th:text="${valid}"></p>
+    <a href="/useful">Home</a>
+
+
+</body>
+</html>

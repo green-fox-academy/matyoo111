@@ -1,6 +1,7 @@
 package com.greenfoxacademy.dependencies_practice.services;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -22,5 +23,20 @@ public class UtilityService {
 
   public String randomColor() {
     return colors.get(random.nextInt(colors.size()));
+  }
+
+  public boolean validateEmail(String email) {
+    boolean isValid = false;
+    if (email.contains(".") && email.contains("@")) {
+      isValid = true;
+    }
+    return isValid;
+  }
+  public String caesar(String text, int number) {
+    String result = "";
+    for(int i = 0; i < text.length(); i++) {
+      result += (char)((int)text.charAt(i) + number);
+    }
+    return result;
   }
 }

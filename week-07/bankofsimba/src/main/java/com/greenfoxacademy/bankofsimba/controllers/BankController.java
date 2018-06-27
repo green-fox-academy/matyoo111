@@ -8,10 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Controller
 public class BankController {
@@ -35,6 +33,7 @@ public class BankController {
   @GetMapping("")
   public String showAccount(Model model) {
     model.addAttribute("bankaccounts", accounts);
+    model.addAttribute("newAccount", new BankAccount());
     return "index";
   }
 
@@ -48,12 +47,6 @@ public class BankController {
       }
     }
     model.addAttribute("bankaccounts", accounts);
-    return "index";
-  }
-
-  @GetMapping("/registration")
-  public String showRegistrationPage(Model model) {
-    model.addAttribute("newAccount", new BankAccount());
     return "index";
   }
 

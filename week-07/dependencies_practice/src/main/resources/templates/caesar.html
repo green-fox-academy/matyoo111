@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" th:action="@{/useful/caesar}" method="get">
+    <label for="word">Word to code</label>
+    <input type="text" id="word" name="word" />
+    <label for="word">Number</label>
+    <input type="text" id="number" name="number" />
+    <input type="submit" value="convert">
+</form>
+<p th:text="${word}"></p>
+<a href="/useful">Home</a>
+</body>
+</html>
