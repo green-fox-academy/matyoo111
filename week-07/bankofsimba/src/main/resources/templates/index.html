@@ -6,23 +6,65 @@
 </head>
 <body>
     <table border="1">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Balance</th>
-            <th>Type</th>
-        </tr>
-    </thead>
-    <tbody>
-        <div>
-            <tr th:each="bankaccount : ${bankaccounts}" th:object="${bankaccount}">
-                <td th:text="*{name}"></td>
-                <td th:text="*{balance}"></td>
-                <td th:text="*{animalType}"></td>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Balance</th>
+                <th>Type</th>
+                <th>ID</th>
+                <th>IsKing</th>
+                <th>IsGoodGuy</th>
             </tr>
-        </div>
-    </tbody>
+        </thead>
+        <tbody>
+            <tr th:each="bankaccount : ${bankaccounts}" th:object="${bankaccount}" th:if="${bankaccount.isKing()}" style="color: orange">
+                <td th:text="*{name}"></td>
+                <td th:text="*{balance} + '.00 gold'"></td>
+                <td th:text="*{animalType}"></td>
+                <td th:text="${bankaccountStat.index}"></td>
+                <td style="color: orange">Is a King</td>
+                <td th:text="${bankaccount.isGoodGuy()} ? 'Good guy' : 'Bad guy'"></td>
+            </tr>
+            <tr th:each="bankaccount : ${bankaccounts}" th:object="${bankaccount}" th:if="${not bankaccount.isKing()}">
+                <td th:text="*{name}"></td>
+                <td th:text="*{balance} + '.00 gold'"></td>
+                <td th:text="*{animalType}"></td>
+                <td th:text="${bankaccountStat.index}"></td>
+                <td>Is not a King</td>
+                <td th:text="${bankaccount.isGoodGuy()} ? 'Good guy' : 'Bad guy'"></td>
+            </tr>
+        </tbody>
     </table>
+    <form action="#" th:action="@{/alma}" method="get">
+        <label for="name">Name of account owner</label>
+        <input type="text" id="name" name="name" />
+        <input type="submit" value="name"><br><br>
+    </form>
+
+
+    <form action="#" th:action="@{/registration}" method="post" th:object="${newAccount}">
+        <label for="account_name">Name:</label>
+        <input type="text" id="account_name" name="accname" /><br>
+        <label for="account_balance">Balance:</label>
+        <input type="text" id="account_balance" /><br>
+        <label for="type">Type:</label>
+        <input type="text" id="type" /><br>
+        <input type="submit" value="name">
+    </form>
+
+<!--
+        <label for="account_name">Name:</label>
+        <input type="text" id="account_name" th:field="*{name}" />
+        <input type="add" value="register" />
+        <label for="account_balance">Age:</label>
+        <input type="text" id="account_balance" th:field="*{balance}" />
+        <label for="type">Age:</label>
+        <input type="text" id="type" th:field="*{animalType}" />
+        <label for="isKing">Age:</label>
+        <input type="text" id="isKing" th:field="*{isKing()}" />
+        <label for="IsGood">Age:</label>
+        <input type="text" id="IsGood" th:field="*{isGoodGuy()}" />
+-->
 
 </body>
 </html>
