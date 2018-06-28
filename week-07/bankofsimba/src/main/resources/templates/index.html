@@ -40,17 +40,7 @@
         <input type="text" id="name" name="name" />
         <input type="submit" value="name"><br><br>
     </form>
-
-
-    <form action="#" th:action="@{/registration}" method="get" th:object="${newAccount}">
-        <label for="account_name">Name:</label>
-        <input type="text" id="account_name" th:field="*{name}" /><br>
-        <label for="account_balance">Balance:</label>
-        <input type="text" id="account_balance" th:field="*{balance}"/><br>
-        <label for="type">Type:</label>
-        <input type="text" id="type" th:field="*{animalType}"/><br>
-        <input type="submit" value="registration">
-    </form>
+<a href="/registration">Register an account</a>
 
 
 </body>

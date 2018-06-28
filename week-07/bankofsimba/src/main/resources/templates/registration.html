@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Registration</title>
+</head>
+<body>
+<h1>Registration</h1>
+<form action="#" th:action="@{registration}" method="post" th:object="${newAccount}">
+
+    <label for="account_name">Name:</label>
+    <input type="text" id="account_name" th:field="*{name}" /><br>
+
+    <label for="account_balance">Balance:</label>
+    <input type="text" id="account_balance" th:field="*{balance}"/><br>
+
+    <label for="type">Type:</label>
+    <input type="text" id="type" th:field="*{animalType}"/><br>
+
+
+
+    <input type="submit" value="Register">
+</form>
+</body>
+</html>
+
+<!--
+<label for="isKing">IsKing:</label>
+    <input type="text" id="isKing" th:field="*{isKing()}"/><br>
+
+    <label for="isGood">Type:</label>
+    <input type="text" id="isGood" th:field="*{isGoodGuy()}"/><br>
+
+    th:field="*{isGoodGuy()==false}" th:field="*{isKing()==false}
+-->

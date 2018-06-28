@@ -1,5 +1,6 @@
 package com.greenfoxacademy.dependencies_practice.controllers;
 
+import com.greenfoxacademy.dependencies_practice.services.StudentService;
 import com.greenfoxacademy.dependencies_practice.services.UtilityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,9 @@ public class UtilityController {
 
   @Autowired
   private UtilityService utilityService;
+
+  @Autowired
+  private StudentService studentService;
 
   @GetMapping("useful/colored")
   public String color(Model model) {
@@ -26,6 +30,7 @@ public class UtilityController {
 
   @GetMapping("useful/email")
   public String checkEmailValidity(@RequestParam(value="word", required=false) String email, Model model) {
+    model.addAttribute("email", email);
     if (!(email == null)) {
       if (utilityService.validateEmail(email)) {
         model.addAttribute("valid", "Email address is valid");
@@ -51,6 +56,18 @@ public class UtilityController {
       model.addAttribute("word", "Could not convert text");
     }
     return "caesar";
+  }
+
+  @GetMapping("gfa")
+  public String listStudent(Model model) {
+    model.addAttribute("studentList", studentService.findAll());
+    return "gfa";
+  }
+
+  @GetMapping("gfa/list")
+  public String listStudentUnordered(Model model) {
+    model.addAttribute("studentListUnordered", studentService.findAll());
+    return "list";
   }
 
 

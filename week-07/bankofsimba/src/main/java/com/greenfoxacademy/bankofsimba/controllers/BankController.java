@@ -1,6 +1,7 @@
 package com.greenfoxacademy.bankofsimba.controllers;
 
 import com.greenfoxacademy.bankofsimba.models.BankAccount;
+import com.greenfoxacademy.bankofsimba.models.trial;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +15,8 @@ import java.util.List;
 @Controller
 public class BankController {
 
-  static List<BankAccount> accounts;
+  public static List<BankAccount> accounts;
+  static List<trial> trials;
 
 
   public BankController() {
@@ -26,6 +28,12 @@ public class BankController {
             new BankAccount("Speedy", 500, "Snail", false, true)
     );
 
+    trials = Arrays.asList(
+            new trial("Simba", 2000, "Lion"),
+            new trial("Nala", 300, "Lion"),
+            new trial("Rafiki", 100, "Monkey")
+    );
+
   }
 
 
@@ -33,7 +41,6 @@ public class BankController {
   @GetMapping("")
   public String showAccount(Model model) {
     model.addAttribute("bankaccounts", accounts);
-    model.addAttribute("newAccount", new BankAccount());
     return "index";
   }
 
@@ -50,9 +57,16 @@ public class BankController {
     return "index";
   }
 
+  @GetMapping("/registration")
+  public String showAcc(Model model) {
+    model.addAttribute("newAccount", new trial());
+    return "registration";
+  }
+
   @PostMapping("/registration")
-  public String register(@ModelAttribute BankAccount bankAccount) {
-    accounts.add(bankAccount);
-    return "index";
+  public String register(@ModelAttribute trial example) {
+
+    trials.add(example);
+    return "redirect:/";
   }
 }

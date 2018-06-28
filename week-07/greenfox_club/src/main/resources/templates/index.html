@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Greenfoxclub</title>
+</head>
+<body th:object=" ${fox} ">
+    <ul>
+        <li><a href="/information">Information</a></li>
+        <li><a href="/login">LogIn</a></li>
+        <li><a th:href="@{'/' + ${fox.name} + '/nutritionStore'}">NutritionStore</a></li>
+        <li><a th:href="@{'/' + ${fox.name} + '/trickCenter'}">TrickCenter</a></li>
+    </ul>
+
+    <img src="../static/images/greenfox.png">
+    <div >
+        <div >
+            <p th:text="'This is '
+            + *{name}
+            +'. Currently living on '
+            + *{food} +
+            ' and '
+            + *{drink}
+            + '. He knows ' + *{getListOfTricks().size()}
+            + ' tricks.'"></p>
+        </div>
+
+        <h1>Known tricks:</h1>
+        <div th:if="*{getListOfTricks().size() == 0}">
+            <p>Go and learn some tricks</p>
+        </div>
+        <div>
+            <ul th:each="trick : *{getListOfTricks()}">
+                <li th:text="${trick}"></li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+</html>
