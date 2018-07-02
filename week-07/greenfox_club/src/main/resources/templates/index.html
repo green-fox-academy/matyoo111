@@ -6,7 +6,7 @@
 </head>
 <body th:object=" ${fox} ">
     <ul>
-        <li><a href="/information">Information</a></li>
+        <li><a th:href="@{'/' + ${fox.name} + '/information'}">Information</a></li>
         <li><a href="/login">LogIn</a></li>
         <li><a th:href="@{'/' + ${fox.name} + '/nutritionStore'}">NutritionStore</a></li>
         <li><a th:href="@{'/' + ${fox.name} + '/trickCenter'}">TrickCenter</a></li>
@@ -24,8 +24,12 @@
             + '. He knows ' + *{getListOfTricks().size()}
             + ' tricks.'"></p>
         </div>
+        <div th:if="*{name == 'Mr.Fox'}">
+            <h4 th:text="${instruction}"></h4>
+        </div>
 
         <h1>Known tricks:</h1>
+
         <div th:if="*{getListOfTricks().size() == 0}">
             <p>Go and learn some tricks</p>
         </div>

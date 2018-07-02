@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+    <a href="/login">LogIn</a><br>
+    <a href="/">Home</a>
+    <h1>Information About foxes</h1>
+    <div>
+        <h3>Foxes currenly in database:</h3>
+        <ul th:each="foxInList : ${foxes}">
+            <li th:text="*{foxInList.getName()}"></li>
+        </ul>
+
+    </div>
+
+
+
+</body>
+</html>
+
+<!--
+
+-->

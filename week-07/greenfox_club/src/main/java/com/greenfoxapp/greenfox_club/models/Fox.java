@@ -12,7 +12,10 @@ public class Fox {
   private String drink;
 
   public Fox() {
-
+    this.name = "Mr.Fox";
+    this.listOfTricks = new ArrayList<>();
+    this.food = "gyros";
+    this.drink = "lemonade";
   }
 
   public Fox(String name) {
@@ -22,7 +25,7 @@ public class Fox {
     this.drink = "unknown";
   }
 
-  public Fox(String name, List<String> listOfTricks, String food, String drink) {
+  public Fox(String name, String food, String drink) {
     this.name = name;
     this.listOfTricks = new ArrayList<>();
     this.food = food;
