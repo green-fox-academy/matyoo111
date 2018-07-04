@@ -8,16 +8,16 @@ public class PokerCheckerApp {
     List<Card> black = Arrays.asList(
             new Card("H", 6),
             new Card("D", 6),
-            new Card("S", 6),
-            new Card("C", 6),
+            new Card("S", 3),
+            new Card("C", 5),
             new Card("H", 5));
 
     List<Card> white = Arrays.asList(
-            new Card("H", 6),
-            new Card("H", 6),
-            new Card("H", 2),
-            new Card("H", 2),
-            new Card("D", 5));
+            new Card("H", 14),
+            new Card("H", 13),
+            new Card("H", 12),
+            new Card("H", 11),
+            new Card("H", 10));
 
     System.out.println(winner_evaluator(black, white));
 

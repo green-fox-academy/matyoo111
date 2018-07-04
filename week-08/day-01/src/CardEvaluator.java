@@ -28,7 +28,7 @@ public class CardEvaluator {
   }
 
   public static boolean check_royal_flush(List<Card> cards) {
-    if (check_straight_flush(cards) && cards.get(0).number == 13) {
+    if (check_straight_flush(cards) && cards.get(0).number == 14) {
       return true;
     }
     return false;
