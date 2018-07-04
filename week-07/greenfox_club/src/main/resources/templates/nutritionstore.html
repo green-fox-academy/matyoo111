@@ -10,7 +10,7 @@
     <li><a href="/login">LogIn</a></li>
     <li><a href="/nutritionStore">NutritionStore</a></li>
 
-    <form action="#" th:action="'/' + ${fox} + '/nutritionStore'" id="nutritionform" method="post">
+    <form action="#" th:action="'/' + ${name} + '/nutritionStore'" id="nutritionform" method="post">
         <input type="submit" value="submit">
     </form>
     <select name="food" form="nutritionform">

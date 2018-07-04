@@ -59,8 +59,8 @@ public class MainController {
 
   @GetMapping("{name}/nutritionStore")
   public String showNutritionStore(Model model, @PathVariable(value = "name") String name) {
-    model.addAttribute("fox", name);
-    return "nutritionStore";
+    model.addAttribute("name", name);
+    return "nutritionstore";
   }
 
   @PostMapping("{name}/nutritionStore")
