@@ -1,10 +1,11 @@
-package service;
+package com.greenfox.error.model.service;
 
 import com.greenfox.error.model.User;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
-
+@Service
 public class UserService {
 
     private ArrayList<User> users;

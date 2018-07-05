@@ -1,9 +1,8 @@
 package com.greenfoxacademy.connection_with_mysql.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class ToDo {
@@ -14,6 +13,21 @@ public class ToDo {
   private String title;
   private boolean urgent;
   private boolean done;
+
+  @OneToMany(mappedBy = "todo")
+  private List<Assignee> assignees = new ArrayList<>();
+
+  public List<Assignee> getAssignees() {
+    return assignees;
+  }
+
+  public void setAssignees(List<Assignee> assignees) {
+    this.assignees = assignees;
+  }
+
+  public void addAssignees(Assignee assignee) {
+    assignees.add(assignee);
+  }
 
   public ToDo (String title, boolean urgent, boolean done) {
     this.title = title;

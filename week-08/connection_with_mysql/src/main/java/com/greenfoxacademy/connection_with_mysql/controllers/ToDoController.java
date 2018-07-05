@@ -1,6 +1,7 @@
 package com.greenfoxacademy.connection_with_mysql.controllers;
 
 import com.greenfoxacademy.connection_with_mysql.models.ToDo;
+import com.greenfoxacademy.connection_with_mysql.repositories.AssigneeRepository;
 import com.greenfoxacademy.connection_with_mysql.repositories.ToDoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,9 +16,9 @@ import java.util.List;
 public class ToDoController {
 
 
-  @Autowired
   ToDoRepository toDoRepository;
 
+  @Autowired
   public ToDoController(ToDoRepository toDoRepository) {
     this.toDoRepository = toDoRepository;
   }

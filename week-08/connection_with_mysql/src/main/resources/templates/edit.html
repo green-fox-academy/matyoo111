@@ -2,19 +2,75 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
+    <title>ToDoList</title>
 </head>
 <body>
-    <form action="#" th:action="@{'/' + ${todo1.getId()} + '/edit'}" method="post">
-        <label for="title">Edit descripton</label>
-        <input type="text" name="title" id="title"><br>
-        <label for="urgent">Urgent: </label>
-        <input type="checkbox" name="urgent" id="urgent" value="true" />
-        <label for="done">Done: </label>
-        <input type="checkbox" name="done" id="done" value="true" />
-        <input type="submit" name="edit"/><br>
-    </form>
-    <a href="/todo">Cancel</a>
 
+    <div class="text-center">
+        <h1>ToDos for today</h1>
+    </div>
+
+    <div class="text-center">
+        <form class="form-inline" action="/todo/add" method="get">
+            <button type="submit" class="btn btn-warning" name="addtodo">Add new todo</button>
+        </form>
+    </div>
+    <a href="/assignee">Manage assignees</a>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Action</th>
+                <th>Done</th>
+                <th>Urgent</th>
+                <th>Delete</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody >
+            <tr th:each="todo : ${todos}">
+                <td th:text="${todo.id}"></td>
+                <td th:text="${todo.title}"></td>
+                <td th:if="${todo.isDone()}">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </td>
+                <td th:if="${todo.isDone() == false}">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </td>
+
+                <td th:if="${todo.isUrgent()}">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </td>
+                <td th:if="${todo.isUrgent() == false}">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </td>
+                <td>
+                    <form class="form-inline" action="#" th:action="@{'/' + ${todo.id} + '/delete'}" method="post">
+                        <button type="submit" class="btn btn-danger" name="delete">Delete</button>
+                    </form>
+                <td>
+                <form class="form-inline" action="#" th:action="@{'/' + ${todo.id} + '/edit'}" method="get">
+                    <button type="submit" class="btn btn-primary" name="edit">Edit</button>
+                </form>
+                </td>
+            </tr>
+        </tbody>
+        <form role="search" class="form-horizontal">
+            <div class="search-control">
+                <input type="search" id="site-search" name="q"
+                       placeholder="Search the site..."
+                       aria-label="Search through site content">
+                <button>Search</button>
+            </div>
+        </form>
+
+    </table>
+
+
+
+<script src="webjars/jquery/1.11.1/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 </body>
 </html>
