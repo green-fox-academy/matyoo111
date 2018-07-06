@@ -1,9 +1,31 @@
 package com.greenfoxacademy.connection_with_mysql.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Assignee {
+
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private long id;
+  private String name;
+  private String email;
+
+  @OneToMany(mappedBy = "assignee")
+  private List<ToDo> todos = new ArrayList<>();
+
+
+
+  public Assignee() {
+  }
+
+  public Assignee(String name, String email) {
+    this.name = name;
+    this.email = email;
+  }
 
   public long getId() {
     return id;
@@ -13,29 +35,12 @@ public class Assignee {
     this.id = id;
   }
 
-  public ToDo getTodo() {
-    return todo;
+  public List<ToDo> getTodos() {
+    return todos;
   }
 
-  public void setTodo(ToDo todo) {
-    this.todo = todo;
-  }
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private long id;
-  private String name;
-  private String email;
-
-  @ManyToOne
-  private ToDo todo;
-
-  public Assignee() {
-  }
-
-  public Assignee(String name, String email) {
-    this.name = name;
-    this.email = email;
+  public void setTodos(List<ToDo> todos) {
+    this.todos = todos;
   }
 
   public String getName() {

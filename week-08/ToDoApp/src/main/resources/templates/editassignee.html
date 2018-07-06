@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
+    <title>Title</title>
+</head>
+<body class="text-center">
+<h3 th:text="'Edit ' + ${assignee.name}"></h3>
+
+<form action="#" th:action="@{'/' + ${assignee.id} + '/editassignee'}" method="post" >
+    <input type="text" name="name" th:placeholder="${assignee.name}">
+    <input type="email" name="email" th:placeholder="${assignee.email}">
+    <input type="submit" value="Submit">
+</form>
+
+<h3>List of assigned ToDos:</h3>
+<ul th:each="task : ${assignee.getTodos()}">
+    <li th:text="${task.title}"></li>
+</ul>
+</body>
+
+
+<script src="webjars/jquery/1.11.1/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+
+</html>

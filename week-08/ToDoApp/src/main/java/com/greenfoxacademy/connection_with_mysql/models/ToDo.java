@@ -14,20 +14,11 @@ public class ToDo {
   private boolean urgent;
   private boolean done;
 
-  @OneToMany(mappedBy = "todo")
-  private List<Assignee> assignees = new ArrayList<>();
 
-  public List<Assignee> getAssignees() {
-    return assignees;
-  }
 
-  public void setAssignees(List<Assignee> assignees) {
-    this.assignees = assignees;
-  }
+  @ManyToOne
+  private Assignee assignee;
 
-  public void addAssignees(Assignee assignee) {
-    assignees.add(assignee);
-  }
 
   public ToDo (String title, boolean urgent, boolean done) {
     this.title = title;
@@ -41,6 +32,14 @@ public class ToDo {
 
   public ToDo(String task) {
     this.title = task;
+  }
+
+  public Assignee getAssignee() {
+    return assignee;
+  }
+
+  public void setAssignee(Assignee assignee) {
+    this.assignee = assignee;
   }
 
   public long getId() {

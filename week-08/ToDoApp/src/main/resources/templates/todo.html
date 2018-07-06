@@ -4,9 +4,10 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
-    <title>ToDoList</title>
+    <title>Title</title>
 </head>
 <body>
+
 
     <div class="text-center">
         <h1>ToDos for today</h1>
@@ -25,6 +26,7 @@
                 <th>Action</th>
                 <th>Done</th>
                 <th>Urgent</th>
+                <th>Assignee</th>
                 <th>Delete</th>
                 <th>Edit</th>
             </tr>
@@ -46,6 +48,8 @@
                 <td th:if="${todo.isUrgent() == false}">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </td>
+                <td th:if="${todo.assignee != null}" th:text="${todo.assignee.name}"></td>
+                <th th:if="${todo.assignee == null}" th:text="'ToDo is not assigned yet'"></th>
                 <td>
                     <form class="form-inline" action="#" th:action="@{'/' + ${todo.id} + '/delete'}" method="post">
                         <button type="submit" class="btn btn-danger" name="delete">Delete</button>
@@ -57,12 +61,10 @@
                 </td>
             </tr>
         </tbody>
-        <form role="search" class="form-horizontal">
+        <form action="#" th:action="@{/todo}" method="get">
             <div class="search-control">
-                <input type="search" id="site-search" name="q"
-                       placeholder="Search the site..."
-                       aria-label="Search through site content">
-                <button>Search</button>
+                <input type="search" name="search" placeholder="Search the for ToDos">
+                <button type="submit">Search</button>
             </div>
         </form>
 
@@ -72,5 +74,6 @@
 
 <script src="webjars/jquery/1.11.1/jquery.min.js"></script>
 <script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+
 </body>
 </html>

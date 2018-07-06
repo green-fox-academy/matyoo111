@@ -1,5 +1,6 @@
 package com.greenfoxacademy.connection_with_mysql.controllers;
 
+import com.greenfoxacademy.connection_with_mysql.models.Assignee;
 import com.greenfoxacademy.connection_with_mysql.models.ToDo;
 import com.greenfoxacademy.connection_with_mysql.repositories.AssigneeRepository;
 import com.greenfoxacademy.connection_with_mysql.repositories.ToDoRepository;
@@ -17,35 +18,27 @@ public class ToDoController {
 
 
   ToDoRepository toDoRepository;
+  AssigneeRepository assigneeRepository;
 
   @Autowired
-  public ToDoController(ToDoRepository toDoRepository) {
+  public ToDoController(ToDoRepository toDoRepository, AssigneeRepository assigneeRepository) {
     this.toDoRepository = toDoRepository;
+    this.assigneeRepository = assigneeRepository;
   }
 
 
-
-
   @GetMapping(value = {"/todo", ""})
-  public String renderToDo(Model model, @RequestParam(value = "isActive", required = false) Boolean isActive) {
-    model.addAttribute("todos", toDoRepository.findAll());
-    try {
-      List<ToDo> doneList = new ArrayList<>();
-      List<ToDo> unDoneList = new ArrayList<>();
-      if (isActive == true) {
-        for (ToDo todo : toDoRepository.findAll()) {
-          if (todo.isDone()) {
-            doneList.add(todo);
-          } else {
-            unDoneList.add(todo);
-          }
-        }
-        model.addAttribute("todos", doneList);
-      }
-      model.addAttribute("todos", unDoneList);
-    } catch (NullPointerException e) {
+  public String renderToDo(Model model,
+                           @RequestParam(value = "isActive", required = false) boolean isActive,
+                           @RequestParam(value = "search", required = false) String search) {
+    if (isActive) {
+      model.addAttribute("todos", toDoRepository.findByDone(false));
+    }
+    if (search != null){
+      model.addAttribute("todos", toDoRepository.findAllByTitleContaining(search));
+    }
+    else {
       model.addAttribute("todos", toDoRepository.findAll());
-
     }
     return "todo";
   }
@@ -53,14 +46,19 @@ public class ToDoController {
   @GetMapping("/{id}/edit")
   public String editToDo(@PathVariable("id") long id, Model model) {
     model.addAttribute("todo1", toDoRepository.findById(id).get());
+    model.addAttribute("assignees", assigneeRepository.findAll());
     return "edit";
   }
 
   @PostMapping("/{id}/edit")
-  public String editToDo(@PathVariable("id") long id, @RequestParam(value = "urgent", required = false) Boolean urgent, @RequestParam(value = "done", required = false) Boolean done, @RequestParam(value = "title", required = false) String title) {
+  public String editToDo(@PathVariable("id") long id,
+                         @RequestParam(value = "urgent", required = false) Boolean urgent,
+                         @RequestParam(value = "done", required = false) Boolean done,
+                         @RequestParam(value = "title", required = false) String title) {
+
     boolean urgentEdit = false;
     boolean doneEdit = false;
-    if (! (title == null)) {
+    if (!(title == null) && !(title.equals(""))) {
       toDoRepository.findById(id).get().setTitle(title);
     }
     if (! (urgent == null)){
@@ -104,6 +102,11 @@ public class ToDoController {
     return "redirect:/todo";
   }
 
-
+  @PostMapping("/{id}/assign")
+  public String assign(@PathVariable("id") long id, @ModelAttribute("assignee") long assigneeID) {
+    toDoRepository.findById(id).get().setAssignee(assigneeRepository.findById(assigneeID).get());
+    toDoRepository.save(toDoRepository.findById(id).get());
+    return "redirect:/todo";
+  }
 
 }
