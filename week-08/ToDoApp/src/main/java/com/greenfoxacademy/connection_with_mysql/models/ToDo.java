@@ -1,7 +1,12 @@
 package com.greenfoxacademy.connection_with_mysql.models;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -13,17 +18,22 @@ public class ToDo {
   private String title;
   private boolean urgent;
   private boolean done;
+  private Timestamp creationDate;
+  private Timestamp dueDate;
 
 
-
-  @ManyToOne
-  private Assignee assignee;
+  @ManyToOne(cascade=CascadeType.ALL)
+  @NotFound(action = NotFoundAction.IGNORE)
+  private Assignee assignee = new Assignee();
 
 
   public ToDo (String title, boolean urgent, boolean done) {
     this.title = title;
     this.urgent = urgent;
     this.done = done;
+    assignee = null;
+    creationDate = new Timestamp(System.currentTimeMillis());
+    dueDate = null;
   }
 
   public ToDo() {
@@ -32,6 +42,7 @@ public class ToDo {
 
   public ToDo(String task) {
     this.title = task;
+    assignee = null;
   }
 
   public Assignee getAssignee() {
@@ -72,5 +83,17 @@ public class ToDo {
 
   public void setDone(boolean done) {
     this.done = done;
+  }
+
+  public Timestamp getCreationDate() {
+    return creationDate;
+  }
+
+  public Timestamp getDueDate() {
+    return dueDate;
+  }
+
+  public void setDueDate(Timestamp dueDate) {
+    this.dueDate = dueDate;
   }
 }

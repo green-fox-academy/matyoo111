@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
-    <title>Title</title>
+    <title>ToDos</title>
 </head>
 <body>
 
@@ -12,13 +12,9 @@
     <div class="text-center">
         <h1>ToDos for today</h1>
     </div>
-
     <div class="text-center">
-        <form class="form-inline" action="/todo/add" method="get">
-            <button type="submit" class="btn btn-warning" name="addtodo">Add new todo</button>
-        </form>
+    <a href="/assignee" class="btn btn-info">Manage assignees</a>
     </div>
-    <a href="/assignee">Manage assignees</a>
     <table class="table table-hover">
         <thead>
             <tr>
@@ -61,10 +57,17 @@
                 </td>
             </tr>
         </tbody>
-        <form action="#" th:action="@{/todo}" method="get">
-            <div class="search-control">
-                <input type="search" name="search" placeholder="Search the for ToDos">
-                <button type="submit">Search</button>
+        <form action="#" th:action="@{/todo}" method="get" >
+            <div >
+                <input type="search" name="search" placeholder="Search for ToDos" class="form-control-static">
+                <button type="submit" class="btn btn-warning">Search</button>
+            </div>
+        </form>
+
+        <form action="/todo/add" method="post" class="form-horizontal">
+            <div class="form-group">
+                <input type="text" name="newtodo" id="newtodo" placeholder="Add new Todo" class="form-control-static">
+                <input type="submit" class="btn btn-success">
             </div>
         </form>
 

@@ -38,7 +38,7 @@ public class ToDoController {
       model.addAttribute("todos", toDoRepository.findAllByTitleContaining(search));
     }
     else {
-      model.addAttribute("todos", toDoRepository.findAll());
+      model.addAttribute("todos", toDoRepository.findAllByOrderByIdAsc());
     }
     return "todo";
   }
@@ -51,37 +51,36 @@ public class ToDoController {
   }
 
   @PostMapping("/{id}/edit")
-  public String editToDo(@PathVariable("id") long id,
+  public String editToDo(@PathVariable("id") long identification,
                          @RequestParam(value = "urgent", required = false) Boolean urgent,
                          @RequestParam(value = "done", required = false) Boolean done,
                          @RequestParam(value = "title", required = false) String title) {
-
     boolean urgentEdit = false;
     boolean doneEdit = false;
     if (!(title == null) && !(title.equals(""))) {
-      toDoRepository.findById(id).get().setTitle(title);
+      toDoRepository.findById(identification).get().setTitle(title);
     }
-    if (! (urgent == null)){
+    if (urgent != null){
       if (urgent) {
         urgentEdit = true;
       }
     }
-    if (! (done == null)) {
+    if (done != null) {
       if (done) {
         doneEdit = true;
       }
     }
     if (urgentEdit) {
-      toDoRepository.findById(id).get().setUrgent(true);
+      toDoRepository.findById(identification).get().setUrgent(true);
     } else {
-      toDoRepository.findById(id).get().setUrgent(false);
+      toDoRepository.findById(identification).get().setUrgent(false);
     }
     if (doneEdit) {
-      toDoRepository.findById(id).get().setDone(true);
+      toDoRepository.findById(identification).get().setDone(true);
     } else {
-      toDoRepository.findById(id).get().setDone(false);
+      toDoRepository.findById(identification).get().setDone(false);
     }
-    toDoRepository.save(toDoRepository.findById(id).get());
+    toDoRepository.save(toDoRepository.findById(identification).get());
     return "redirect:/todo";
   }
 

@@ -13,4 +13,5 @@ public interface ToDoRepository extends CrudRepository<ToDo, Long> {
   List<ToDo> findAllByTitleContaining(String title);
   List<ToDo> findByDone(boolean isDone);
   List<ToDo> findAll();
+  List<ToDo> findAllByOrderByIdAsc();
 }

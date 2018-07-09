@@ -1,20 +1,26 @@
 package com.greenfoxacademy.connection_with_mysql.controllers;
 
 import com.greenfoxacademy.connection_with_mysql.models.Assignee;
+import com.greenfoxacademy.connection_with_mysql.models.ToDo;
 import com.greenfoxacademy.connection_with_mysql.repositories.AssigneeRepository;
+import com.greenfoxacademy.connection_with_mysql.repositories.ToDoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class AssigneeController {
 
   AssigneeRepository assigneeRepository;
+  ToDoRepository toDoRepository;
 
   @Autowired
-  public AssigneeController(AssigneeRepository assigneeRepository) {
+  public AssigneeController(AssigneeRepository assigneeRepository, ToDoRepository toDoRepository) {
     this.assigneeRepository = assigneeRepository;
+    this.toDoRepository = toDoRepository;
   }
 
   @GetMapping("/assignee")
@@ -62,9 +68,5 @@ public class AssigneeController {
     assigneeRepository.deleteById(id);
     return "redirect:/assignee";
   }
-
-
-
-
 
 }

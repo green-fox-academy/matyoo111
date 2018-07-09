@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <link href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7-1/css/bootstrap-theme.min.css" />
+    <title>Main page</title>
+</head>
+<body>
+<div class="text-center">
+    <table class="table-hover">
+        <tbody>
+        <tr th:each="post : ${posts}" th:object="${post}">
+            <td>
+                <p th:text="${post.popularity}"></p>
+            </td>
+            <td>
+                <form action="#" th:action="@{'/increase/' + ${post.id}}" method="post" >
+                    <button type="submit" th:text="'+'" name="submit" value="submit"/>
+                </form>
+            </td>
+            <td>
+                <form action="#" th:action="@{'/decrease/' + ${post.id}}" method="post">
+                    <button type="submit" th:text="'-'" name="submit" value="submit"/>
+                </form>
+            </td>
+            <td>
+                <a th:href="${post.url}" th:text="${post.title}"></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<a href="/add">Add new Reddit Post</a>
+</body>
+
+    <script src="webjars/jquery/1.11.1/jquery.min.js"></script>
+    <script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+
+</html>

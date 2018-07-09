@@ -2,9 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
-    <title>Title</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7-1/css/bootstrap-theme.min.css" />
+    <title>EditAssignees</title>
 </head>
 <body class="text-center">
 <h3 th:text="'Edit ' + ${assignee.name}"></h3>
@@ -16,13 +17,17 @@
 </form>
 
 <h3>List of assigned ToDos:</h3>
-<ul th:each="task : ${assignee.getTodos()}">
+<ul th:each="task : ${assignee.getTodos()}" class="list-inline">
     <li th:text="${task.title}"></li>
 </ul>
+
+<a href="/assignee">Cancel</a>
 </body>
 
 
 <script src="webjars/jquery/1.11.1/jquery.min.js"></script>
 <script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 
 </html>
