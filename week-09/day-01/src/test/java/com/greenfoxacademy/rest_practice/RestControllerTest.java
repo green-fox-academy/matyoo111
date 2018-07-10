@@ -13,6 +13,7 @@ import java.nio.charset.Charset;
 
 import static org.hamcrest.core.Is.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
@@ -33,25 +34,127 @@ public class RestControllerTest {
   //@MockBean
   //private UserService userService;
 
+
   @Test
-  public void addNewUser_succesfull() throws Exception {
-    mockMvc.perform(post("/users")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content("{\"email\": \"name@example.com\", \"password\": \"12345\"}"))
+  public void doubling_succesfull() throws Exception {
+    mockMvc.perform(get("/doubling")
+            .param("input", "5")
+            .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andExpect(content().contentType(contentType))
-            .andExpect(jsonPath("$.result", is("success")))
-            .andExpect(jsonPath("$.message", is("User is added")));
+            .andExpect(jsonPath("$.result", is(10)));
   }
 
   @Test
-  public void addNewUser_missingEmail() throws Exception {
-    mockMvc.perform(post("/users")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content("{\"password\": \"12345\"}"))
-            .andExpect(status().isBadRequest())
+  public void doubling_missingNumber() throws Exception {
+    mockMvc.perform(get("/doubling")
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
             .andExpect(content().contentType(contentType))
-            .andExpect(jsonPath("$.result", is("fail")))
-            .andExpect(jsonPath("$.message", is("Email is missing")));
+            .andExpect(jsonPath("$.error", is("Please provide an input!")));
+  }
+
+  @Test
+  public void greeter_successful() throws Exception {
+    mockMvc.perform(get("/greeter")
+            .param("name", "Pista")
+            .param("title", "student")
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(contentType))
+            .andExpect(jsonPath("$.welcome_message", is("Oh, hi there Pista, my dear student!")));
+  }
+
+  @Test
+  public void greeter_missing_name() throws Exception {
+    mockMvc.perform(get("/greeter?title=student")
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(contentType))
+            .andExpect(jsonPath("$.error", is("Please provide a name!")));
+  }
+
+  @Test
+  public void greeter_missing_title() throws Exception {
+    mockMvc.perform(get("/greeter?name=Pista")
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(contentType))
+            .andExpect(jsonPath("$.error", is("Please provide a title!")));
+  }
+
+  @Test
+  public void greeter_missing_title_and_name() throws Exception {
+    mockMvc.perform(get("/greeter")
+            .contentType(MediaType.APPLICATION_JSON))
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(contentType))
+            .andExpect(jsonPath("$.error", is("Please provide a name and a title!")));
+  }
+
+  @Test
+  public void dountil_successful_factor() throws Exception {
+    mockMvc.perform(post("/dountil/factor")
+            .param("what", "factor")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content("{\"until\": \"5\"}"))
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(contentType))
+            .andExpect(jsonPath("$.result", is(120)));
+  }
+
+  @Test
+  public void dountil_successful_sum() throws Exception {
+    mockMvc.perform(post("/dountil/sum")
+            .param("what", "sum")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content("{\"until\": \"5\"}"))
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(contentType))
+            .andExpect(jsonPath("$.result", is(15)));
+  }
+
+  @Test
+  public void dountil_missing_number() throws Exception {
+    mockMvc.perform(post("/dountil/sum")
+            .param("what", "sum")
+            .contentType(MediaType.APPLICATION_JSON))
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(contentType))
+            .andExpect(jsonPath("$.error", is("Please provide a number!")));
+  }
+
+  @Test
+  public void dountil_missing_operation() throws Exception {
+    mockMvc.perform(post("/dountil")
+            .param("what", "")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content("{\"until\": \"5\"}"))
+            .andExpect(status().isNotFound());
+  }
+
+  @Test
+  public void dountil_wrong_operation() throws Exception {
+    mockMvc.perform(post("/dountil/wrong")
+            .param("what", "wrong")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content("{\"until\": \"5\"}"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(contentType))
+            .andExpect(jsonPath("$.error", is("Please provide a what!")));
+  }
+
+  @Test
+  public void dountil_wrong_operation_and_number() throws Exception {
+    mockMvc.perform(post("/dountil/wrong")
+            .param("what", "wrong")
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(contentType))
+            .andExpect(jsonPath("$.error", is("Please provide a number and a what!")));
   }
 }

@@ -19,9 +19,9 @@ public class RestController {
   public Object greet(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "title", required = false)String title) {
     if (name != null && title != null) {
       return new Greeter(name, title);
-    } else if (name == null){
+    } else if (name == null && title != null){
       return new ErrorHandling("Please provide a name!");
-    } else if (title == null) {
+    } else if (title == null && name != null) {
       return new ErrorHandling("Please provide a title!");
     } else {
       return new ErrorHandling("Please provide a name and a title!");
@@ -34,12 +34,12 @@ public class RestController {
   }
 
   @PostMapping("/dountil/{what}")
-  public Object doUntil(@PathVariable("what") String operation, @RequestBody(required = false) DoUntil doUntil) {
-    if (operation != null && doUntil != null) {
+  public Object doUntil(@PathVariable(value = "what", required = false) String operation, @RequestBody(required = false) DoUntil doUntil) {
+    if (operation != null && doUntil != null && (operation.equals("sum") || operation.equals("factor"))) {
       return new Operation(doUntil.getUntil(), operation);
-    } else if (doUntil == null){
+    } else if (doUntil == null && operation != null && (operation.equals("sum") || operation.equals("factor"))){
       return new ErrorHandling("Please provide a number!");
-    } else if (operation == null) {
+    } else if (!((operation.equals("sum") || operation.equals("factor"))) && doUntil != null) {
       return new ErrorHandling("Please provide a what!");
     } else {
       return new ErrorHandling("Please provide a number and a what!");
